@@ -15,7 +15,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
   @IBOutlet weak var progressView: UIProgressView!
   
   private var observation: NSKeyValueObservation?
-  private var colroCnt = 0
+  private var colorCnt = 0
   private let colorArray: [UIColor] = [
     .blue,
     .green,
@@ -29,8 +29,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
     webView.navigationDelegate = self
     webView.load(URLRequest(url: URL(string: "https://www.kantei.go.jp/")!))
     
-    progressView.progressTintColor = colorArray[colroCnt]
-    colroCnt = colroCnt + 1
+    progressView.progressTintColor = colorArray[colorCnt]
+    colorCnt = colorCnt + 1
     
     observation = webView.observe(\.estimatedProgress, options: .new){_, change in
       print("progress=\(String(describing: change.newValue))")
@@ -44,10 +44,10 @@ class ViewController: UIViewController, WKNavigationDelegate {
                         self.progressView.alpha = 0.0
                         
         }, completion: { (finished: Bool) in
-          self.progressView.progressTintColor = self.colorArray[self.colroCnt]
-          self.colroCnt = self.colroCnt + 1
-          if self.colroCnt >= self.colorArray.count {
-            self.colroCnt = 0
+          self.progressView.progressTintColor = self.colorArray[self.colorCnt]
+          self.colorCnt = self.colorCnt + 1
+          if self.colorCnt >= self.colorArray.count {
+            self.colorCnt = 0
           }
           
           self.progressView.setProgress(0, animated: false)
