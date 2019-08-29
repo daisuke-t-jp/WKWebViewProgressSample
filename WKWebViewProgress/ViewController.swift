@@ -10,11 +10,11 @@ import UIKit
 import WebKit
 
 class ViewController: UIViewController, WKNavigationDelegate {
-
+  
   @IBOutlet weak var webView: WKWebView!
   @IBOutlet weak var progressView: UIProgressView!
   
-  private var observers = [NSKeyValueObservation]()
+  private var observation: NSKeyValueObservation?
   private var colroCnt = 0
   private let colorArray: [UIColor] = [
     .blue,
@@ -32,7 +32,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     progressView.progressTintColor = colorArray[colroCnt]
     colroCnt = colroCnt + 1
     
-    observers.append(webView.observe(\.estimatedProgress, options: .new){_, change in
+    observation = webView.observe(\.estimatedProgress, options: .new){_, change in
       print("progress=\(String(describing: change.newValue))")
       self.progressView.setProgress(Float(change.newValue!), animated: true)
       
@@ -56,7 +56,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
       else {
         self.progressView.alpha = 1.0
       }
-    })
+    }
     
   }
   
