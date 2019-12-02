@@ -2,7 +2,7 @@
 
 WKWebView's progress sample.  
 <br />
-Related Blog 👉 https://daisuke-t-jp.hatenablog.com/entry/2019/08/29/124011
+Related Blog 👉 https://daisuke-t-jp.hatenablog.com/entry/2019/08/29/WKWebView-Progress
 <br />
 <br />
 <br />
